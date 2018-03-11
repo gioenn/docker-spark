@@ -14,7 +14,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
 # MAVEN & SPARK 1.6
 RUN wget http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && sudo tar -zxf apache-maven-3.3.9-bin.tar.gz -C /usr/local/ && rm apache-maven-3.3.9-bin.tar.gz && \
     sudo ln -s /usr/local/apache-maven-3.3.9/bin/mvn /usr/bin/mvn && \
-    git clone https://github.com/ElfoLiNk/spark.git --depth=1 --branch=branch-1.6 && \
+    git clone https://github.com/gioenn/xSpark.git --depth=1 --branch=xSpark-1.0 && \
     cd spark && ./dev/change-scala-version.sh 2.11 && \
     sed -i '170s{.*{BUILD_COMMAND=("$MVN" -T 1C clean package -DskipTests --quiet $@){' make-distribution.sh && \
     ./make-distribution.sh --name docker --tgz -Pyarn -Phadoop-2.6 -Dhadoop.version=2.7.2 -Dscala-2.11 -Dmaven.test.skip=true && \
